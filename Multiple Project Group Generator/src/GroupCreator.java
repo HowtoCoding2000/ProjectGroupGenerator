@@ -4,7 +4,8 @@ public class GroupCreator
 	{
 		static int maxGroupSize;
 		static int numberOfGroups;
-		static int numberOfStudents = 22;
+		static int numberOfStudents = 1;
+		protected int iDNumber;
 		static ArrayList<String> group = new ArrayList<String>();
 		static ArrayList<ArrayList<String>> groups = new ArrayList<ArrayList<String>>();
 		static ArrayList<String> students = new ArrayList<String>();
@@ -18,6 +19,7 @@ public class GroupCreator
 					 {
 						 students.add(file.nextLine());
 //						 file.nextLine();
+						 numberOfStudents++;
 					 }
 				 while(file.hasNextLine());
 				 for (String s : students)
