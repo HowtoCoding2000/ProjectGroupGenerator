@@ -5,21 +5,27 @@ public class GroupCreator
 		static int maxGroupSize;
 		static int numberOfGroups;
 		static int numberOfStudents = 1;
-		protected int iDNumber;
+		static int iDNumber = 0;
+		static boolean teamatesMatch;
+		protected String name;
 		static ArrayList<String> group = new ArrayList<String>();
 		static ArrayList<ArrayList<String>> groups = new ArrayList<ArrayList<String>>();
+		static ArrayList<Student2> student2Group = new ArrayList<Student2>();
 		static ArrayList<String> students = new ArrayList<String>();
+		static ArrayList<Student2> studentList = new ArrayList<Student2>();
+		static ArrayList<Integer> previousTeamates = new ArrayList<Integer>();
 		public static void main(String[] args) throws IOException
 			{
 				Scanner file = new Scanner(new File( "StudentList.txt"));
 				Scanner userInput = new Scanner(System.in);
 				students.add(file.nextLine());
-//				 file.nextLine();
-				 do
-					 {
-						 students.add(file.nextLine());
-//						 file.nextLine();
-						 numberOfStudents++;
+//				file.nextLine();
+				do
+					{
+						students.add(file.nextLine());
+						studentList.add(new Student2(numberOfStudents - 1, file.nextLine(), previousTeamates));
+//						file.nextLine();
+						numberOfStudents++;
 					 }
 				 while(file.hasNextLine());
 				 for (String s : students)
@@ -42,15 +48,26 @@ public class GroupCreator
 				System.out.println("You will have " + numberOfGroups + " groups.");
 				System.out.println();
 				int randomNumber = (int)(Math.random()*numberOfStudents);
-				int studentIndex = 0;
+				int studentIndex = randomNumber;
 				for (int n = 1; n <= numberOfGroups; n++)
 					{
 						for (int i = 0; i < maxGroupSize; i++)
 							{
-								if (studentIndex < students.size())
+								while (teamatesMatch)
 									{
-										group.add(students.get(studentIndex));
-										studentIndex++;
+										if (studentIndex < students.size())
+											{
+												group.add(students.get(studentIndex));
+												student2Group.add(studentList.getName(studentIndex));
+												for (Student2 s: student2Group)
+													{
+														
+													}
+//												for (int p : previousTeamates)
+//													{
+//														if ()
+//													}
+											}
 									}
 							}
 						System.out.println("Group " + n +":");
@@ -89,4 +106,37 @@ public class GroupCreator
 //							}
 //					}
 			}
+		public static int getiDNumber()
+			{
+				return iDNumber;
+			}
+		public static void setiDNumber(int iDNumber)
+			{
+				GroupCreator.iDNumber = iDNumber;
+			}
+		public String getName()
+			{
+				return name;
+			}
+		public void setName(String name)
+			{
+				this.name = name;
+			}
+		public static ArrayList<Student2> getStudent2Group()
+			{
+				return student2Group;
+			}
+		public static void setStudent2Group(ArrayList<Student2> student2Group)
+			{
+				GroupCreator.student2Group = student2Group;
+			}
+		public static ArrayList<Integer> getPreviousTeamates()
+			{
+				return previousTeamates;
+			}
+		public static void setPreviousTeamates(ArrayList<Integer> previousTeamates)
+			{
+				GroupCreator.previousTeamates = previousTeamates;
+			}
+		
 	}
